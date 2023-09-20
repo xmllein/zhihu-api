@@ -10,7 +10,10 @@ class TopicsCtl {
     const page = Math.max(ctx.query.page * 1, 1) - 1
     // 每页条数
     const perPage = Math.max(per_page * 1, 1)
-    ctx.body = await Topic.find().limit(perPage).skip(page * perPage)
+    // 话题标题 模糊搜索
+    ctx.body = await Topic.find({
+      name: new RegExp(ctx.query.q)
+    }).limit(perPage).skip(page * perPage)
   }
 
   // 获取话题详情

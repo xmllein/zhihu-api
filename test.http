@@ -1,5 +1,5 @@
 ### 用户列表
-GET http://{{host}}/users?per_page=10&page=2
+GET http://{{host}}/users?per_page=10&page=1&q=许
 Accept: application/json
 
 ### 用户详情

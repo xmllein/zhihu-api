@@ -14,7 +14,10 @@ class UserCtl {
 
     // 总数
     const total = await User.countDocuments()
-    const list = await User.find().limit(perPage).skip(page * perPage)
+    // 用户名 模糊搜索
+    const list = await User.find({
+      name: new RegExp(ctx.query.q)
+    }).limit(perPage).skip(page * perPage)
     ctx.body = {
       total,
       page: page + 1,
