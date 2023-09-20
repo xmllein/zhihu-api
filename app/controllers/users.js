@@ -8,6 +8,9 @@ class UserCtl {
 
   // 用户详情
   findById(ctx) {
+    if(ctx.params.id * 1 >= db.length) {
+        ctx.throw(412, '先决条件失败，id大于等于数组长度')
+    }
     ctx.body = db[ctx.params.id * 1]
   }
 

@@ -3,7 +3,7 @@ GET http://{{host}}/users
 Accept: application/json
 
 ### 用户详情
-GET http://{{host}}/users/1
+GET http://{{host}}/users/10
 
 
 ### 创建用户
