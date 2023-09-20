@@ -42,5 +42,18 @@ Content-Type: application/json
 }
 
 > {%
- client.global.set('token', response.body.token)
- %}
+  client.global.set('token', response.body.token)
+%}
+
+
+### 文件上传
+# https://www.bilibili.com/video/BV1NF411y7SF
+POST http://{{host}}/upload
+Content-Type: multipart/form-data; boundary=boundary
+
+--boundary
+Content-Disposition: form-data; name="file"; filename="upload.txt"
+
+< ./upload.txt
+
+--boundary--
