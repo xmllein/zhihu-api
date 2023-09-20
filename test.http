@@ -23,7 +23,9 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "admin"
+  "name": "admin",
+  "avatar_url": "http://localhost:3000/uploads/upload_c45810cec65a4ee0fd8456112757baf4.png",
+  "headline": "我是一只小小小小鸟"
 }
 
 
