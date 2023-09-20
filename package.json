@@ -4,7 +4,7 @@
   "description": "- [Node.js仿知乎服务端-深入理解RESTful API](https://coding.imooc.com/learn/list/354.html)",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon app"
   },
   "keywords": [],
   "author": "",
