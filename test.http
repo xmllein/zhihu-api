@@ -1,0 +1,29 @@
+### 用户列表
+GET http://{{host}}/users
+Accept: application/json
+
+### 用户详情
+GET http://{{host}}/users/1
+
+
+### 创建用户
+POST http://{{host}}/users
+Content-Type: application/json
+
+{
+  "name": "许梦龙"
+}
+
+
+### 更新用户
+PUT http://{{host}}/users/1
+Content-Type: application/json
+
+{
+  "name": "许一诺"
+}
+
+
+### 删除用户
+DELETE http://{{host}}/users/1
+

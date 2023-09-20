@@ -7,6 +7,9 @@ const router = new Router()
 // 用户路由
 const userRouter = new Router({prefix: '/users'})
 
+// 模拟数据库
+const db = [{name: '李磊'}, {name: '韩梅梅'}]
+
 const auth = async (ctx, next) => {
   if (ctx.url !== '/users') {
     ctx.throw(401)
@@ -21,35 +24,35 @@ router.get('/', (ctx) => {
 
 // 用户列表页面
 userRouter.get('/', auth, (ctx) => {
-  ctx.body = [
-    {name: '李磊'},
-    {name: '韩梅梅'}
-  ]
+  ctx.body = db
 })
 
 // 创建用户
 userRouter.post('/', (ctx) => {
-  ctx.body = {name: '李雷'}
+  db.push(ctx.request.body)
+  ctx.body = ctx.request.body
 })
 
 // 获取用户详情
 userRouter.get('/:id', (ctx) => {
-  ctx.body = `这是用户 ${ctx.params.id}`
+  ctx.body = db[ctx.params.id * 1]
 })
 
 // 修改用户
 userRouter.put('/:id', (ctx) => {
-  ctx.body = `这是全部修改用户 ${ctx.params.id}`
+  db[ctx.params.id * 1] = ctx.request.body
+  ctx.body = ctx.request.body
 })
 
 userRouter.patch('/:id', (ctx) => {
-    ctx.body = `这是部分修改用户 ${ctx.params.id}`
+  db[ctx.params.id * 1] = ctx.request.body
+  ctx.body = ctx.request.body
 })
 
 // 删除用户
 userRouter.delete('/:id', (ctx) => {
-  ctx.body = `这是删除用户 ${ctx.params.id}`
-  // ctx.status = 204
+  db.splice(ctx.params.id * 1, 1)
+  ctx.status = 204
 })
 
 // 获取http 请求参数
