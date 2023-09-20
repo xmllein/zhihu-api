@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const koaBody = require('koa-body')
+const koaStatic = require('koa-static')
 const error = require('koa-json-error')
 const parameter = require('koa-parameter')
 const mongoose = require('mongoose')
@@ -18,6 +19,9 @@ db.once('open', () => {
 })
 
 db.on('error', console.error.bind(console, '连接数据库失败'))
+
+// 静态文件
+app.use(koaStatic(path.join(__dirname, 'public')))
 
 // 错误处理中间件
 // 生产环境下的错误处理（排除stack字段）
