@@ -14,23 +14,41 @@ const auth = async (ctx, next) => {
 }
 
 router.get('/', (ctx) => {
-    ctx.body = '这是主页'
-});
+  ctx.body = '这是主页'
+})
 
 
 // 用户列表页面
 userRouter.get('/', auth, (ctx) => {
-    ctx.body = '这是用户列表页面'
+  ctx.body = [
+    {name: '李磊'},
+    {name: '韩梅梅'}
+  ]
 })
 
 // 创建用户
-userRouter.post('/', auth, (ctx) => {
-    ctx.body = '创建用户'
+userRouter.post('/', (ctx) => {
+  ctx.body = {name: '李雷'}
 })
 
 // 获取用户详情
-userRouter.get('/:id', auth, (ctx) => {
-    ctx.body = `这是用户 ${ctx.params.id}`
+userRouter.get('/:id', (ctx) => {
+  ctx.body = `这是用户 ${ctx.params.id}`
+})
+
+// 修改用户
+userRouter.put('/:id', (ctx) => {
+  ctx.body = `这是全部修改用户 ${ctx.params.id}`
+})
+
+userRouter.patch('/:id', (ctx) => {
+    ctx.body = `这是部分修改用户 ${ctx.params.id}`
+})
+
+// 删除用户
+userRouter.delete('/:id', (ctx) => {
+  ctx.body = `这是删除用户 ${ctx.params.id}`
+  // ctx.status = 204
 })
 
 // 使用路由
