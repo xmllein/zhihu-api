@@ -1,0 +1,18 @@
+{
+  "name": "zhihu-api",
+  "version": "1.0.0",
+  "description": "- [Node.js仿知乎服务端-深入理解RESTful API](https://coding.imooc.com/learn/list/354.html)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "koa": "^2.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
