@@ -11,6 +11,7 @@ const {
   checkOwner,
   listFollowers,
   listFollowing,
+  checkUserExist,
   follow,
   unfollow
 } = require('../controllers/users')
@@ -44,10 +45,10 @@ router.get('/:id/followers', listFollowers)
 router.get('/:id/following', listFollowing)
 
 // 关注某个用户
-router.put('/following/:id', auth, follow)
+router.put('/following/:id', auth, checkUserExist, follow)
 
 // 取消关注某个用户
-router.delete('/following/:id', auth, unfollow)
+router.delete('/following/:id', auth, checkUserExist, unfollow)
 
 
 module.exports = router

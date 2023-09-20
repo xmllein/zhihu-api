@@ -103,6 +103,15 @@ class UserCtl {
     ctx.body = users
   }
 
+  // 校验用户是否存在
+  async checkUserExist(ctx, next) {
+    const user = await User.findById(ctx.params.id)
+    if (!user) {
+      ctx.throw(404, '用户不存在')
+    }
+    await next()
+  }
+
   // 关注用户
   async follow(ctx) {
     // 当前用户
