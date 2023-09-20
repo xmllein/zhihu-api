@@ -2,9 +2,21 @@ const Koa = require('koa')
 const bodyParser = require('koa-bodyparser')
 const error = require('koa-json-error')
 const parameter = require('koa-parameter')
+const mongoose = require('mongoose')
 const app = new Koa()
 // 路由入口
 const routing = require('./routes')
+const {connectionStr} = require('./config')
+
+// 连接数据库
+mongoose.connect(connectionStr, {useNewUrlParser: true, useUnifiedTopology: true,})
+const db = mongoose.connection
+
+db.once('open', () => {
+  console.log('连接数据库成功')
+})
+
+db.on('error', console.error.bind(console, '连接数据库失败'))
 
 // 错误处理中间件
 // 生产环境下的错误处理（排除stack字段）
