@@ -33,6 +33,14 @@ class UserCtl {
     ctx.body = await new User(ctx.request.body).save()
   }
 
+  // 检查用户是否自己数据
+  async checkOwner(ctx, next) {
+    if (ctx.params.id !== ctx.state.user._id) {
+      ctx.throw(403, '没有权限')
+    }
+    await next()
+  }
+
   // 更新用户
   async update(ctx) {
     ctx.verifyParams({
@@ -55,7 +63,7 @@ class UserCtl {
     // 用户是否存在
     const user = await User.findOne(ctx.request.body)
     if (!user) {
-        ctx.throw(401, '用户名或密码不正确')
+      ctx.throw(401, '用户名或密码不正确')
     }
     // 获取用户 _id, name
     const {_id, name} = user

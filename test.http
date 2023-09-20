@@ -4,7 +4,7 @@ Accept: application/json
 
 ### 用户详情
 GET http://{{host}}/users/650a93326d5a6b7b68a4b31b
-Authorization: {{token}}
+Authorization: Bearer {{token}}
 
 
 ### 创建用户
@@ -18,16 +18,18 @@ Content-Type: application/json
 
 
 ### 更新用户
-PATCH http://{{host}}/users/650a9136540334004243cad7
+PATCH http://{{host}}/users/650a93326d5a6b7b68a4b31b
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "许一诺"
+  "name": "admin"
 }
 
 
 ### 删除用户
 DELETE http://{{host}}/users/650a914d540334004243cad9
+Authorization: Bearer {{token}}
 
 
 ### 用户登录
