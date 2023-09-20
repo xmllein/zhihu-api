@@ -85,7 +85,7 @@ Authorization: Bearer {{token}}
 GET http://{{host}}/topics
 
 ### 话题详情
-GET http://{{host}}/topics/650aaa21085a038417e7055e?fields=introduction;
+GET http://{{host}}/topics/650aaa21085a038417e7055e
 
 ### 创建话题
 POST http://{{host}}/topics
@@ -106,3 +106,20 @@ Content-Type: application/json
 {
   "name": "这个一个话题1"
 }
+
+
+### 用户关注话题列表
+GET http://{{host}}/users/650a93326d5a6b7b68a4b31b/followingTopics
+
+
+### 关注话题
+PUT http://{{host}}/users/followingTopics/650aaa21085a038417e7055e
+Authorization: Bearer {{token}}
+
+### 取消关注话题
+DELETE http://{{host}}/users/followingTopics/650aaa21085a038417e7055e
+Authorization: Bearer {{token}}
+
+
+### 关注某个话题的用户列表
+GET http://{{host}}/topics/650aaa21085a038417e7055e/followers

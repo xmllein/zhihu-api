@@ -37,16 +37,16 @@ class UserCtl {
 
     //相关联话题
     const populateStr = fields.split(';').filter(f => f).map(f => {
-        // 工作相关
-        if (f === 'employments') {
-            return 'employments.company employments.job'
-        }
-        // 教育相关
-        if (f === 'educations') {
-            return 'educations.school educations.major'
-        }
-        return f
-    }).join(' ');
+      // 工作相关
+      if (f === 'employments') {
+        return 'employments.company employments.job'
+      }
+      // 教育相关
+      if (f === 'educations') {
+        return 'educations.school educations.major'
+      }
+      return f
+    }).join(' ')
 
     const user = await User.findById(ctx.params.id).select(selectFields).populate(populateStr)
     if (!user) {
@@ -126,6 +126,43 @@ class UserCtl {
       ctx.throw(404, '用户不存在')
     }
     ctx.body = user.following
+  }
+
+  // 用户关注话题列表
+  async listFollowingTopics(ctx) {
+    // populate('followingTopics') 表示将 followingTopics 字段从 id 转为话题信息
+    const user = await User.findById(ctx.params.id).select('+followingTopics').populate('followingTopics')
+    if (!user) {
+      ctx.throw(404, '用户不存在')
+    }
+    ctx.body = user.followingTopics
+  }
+
+  // 用户关注话题
+  async followTopic(ctx) {
+    // 用户关注的话题
+    const me = await User.findById(ctx.state.user._id).select('+followingTopics')
+    // 判断当前用户是否已关注该话题
+    if (!me.followingTopics.map(id => id.toString()).includes(ctx.params.id)) {
+      me.followingTopics.push(ctx.params.id)
+      me.save()
+    }
+    ctx.status = 204
+  }
+
+  // 用户取消关注话题
+  async unfollowTopic(ctx) {
+    // 用户关注的话题
+    const me = await User.findById(ctx.state.user._id).select('+followingTopics')
+    // 当前用户关注列表中的索引
+    const index = me.followingTopics.map(id => id.toString()).indexOf(ctx.params.id)
+    // 已经关注
+    if (index > -1) {
+      // 取消关注
+      me.followingTopics.splice(index, 1)
+      me.save()
+    }
+    ctx.status = 204
   }
 
   // 某个用户关注列表

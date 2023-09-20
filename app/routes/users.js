@@ -13,8 +13,14 @@ const {
   listFollowing,
   checkUserExist,
   follow,
-  unfollow
+  unfollow,
+  listFollowingTopics,
+  followTopic,
+  unfollowTopic,
 } = require('../controllers/users')
+
+// 话题
+const { checkTopicExist } = require('../controllers/topics')
 const {secret} = require('../config')
 
 // 用户认证中间件
@@ -49,6 +55,15 @@ router.put('/following/:id', auth, checkUserExist, follow)
 
 // 取消关注某个用户
 router.delete('/following/:id', auth, checkUserExist, unfollow)
+
+// 获取某个用户的关注话题列表
+router.get('/:id/followingTopics', listFollowingTopics)
+
+// 关注某个话题
+router.put('/followingTopics/:id', auth, checkTopicExist, followTopic)
+
+// 取消关注某个话题
+router.delete('/followingTopics/:id', auth, checkTopicExist, unfollowTopic)
 
 
 module.exports = router

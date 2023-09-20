@@ -2,7 +2,7 @@ const jwt = require('koa-jwt')
 const Router = require('koa-router')
 const router = new Router({prefix: '/topics'})
 const {
-  find, findById, create, update,
+  find, findById, create, update, checkTopicExist, listTopicFollowers
 } = require('../controllers/topics')
 
 const {secret} = require('../config')
@@ -14,8 +14,10 @@ router.get('/', find)
 // 新建话题
 router.post('/', auth, create)
 // 话题详情
-router.get('/:id', findById)
+router.get('/:id', checkTopicExist, findById)
 // 更新话题
-router.patch('/:id', auth, update)
+router.patch('/:id', auth, checkTopicExist, update)
+// 关注话题用户
+router.get('/:id/followers', checkTopicExist, listTopicFollowers)
 
 module.exports = router
