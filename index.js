@@ -1,5 +1,6 @@
 const Koa = require('koa')
 const Router = require('koa-router')
+const bodyParser = require('koa-bodyparser')
 const app = new Koa()
 // 根路由
 const router = new Router()
@@ -51,6 +52,8 @@ userRouter.delete('/:id', (ctx) => {
   // ctx.status = 204
 })
 
+// 获取http 请求参数
+app.use(bodyParser())
 // 使用路由
 app.use(router.routes())
 app.use(userRouter.routes())
