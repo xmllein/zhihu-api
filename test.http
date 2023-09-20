@@ -3,7 +3,7 @@ GET http://{{host}}/users
 Accept: application/json
 
 ### 用户详情
-GET http://{{host}}/users/10
+GET http://{{host}}/users/650a914d540334004243cad9
 
 
 ### 创建用户
@@ -11,12 +11,12 @@ POST http://{{host}}/users
 Content-Type: application/json
 
 {
-  "name": "许梦龙"
+  "name": "许梦龙1"
 }
 
 
 ### 更新用户
-PUT http://{{host}}/users/1
+PUT http://{{host}}/users/650a914d540334004243cad9
 Content-Type: application/json
 
 {
@@ -25,5 +25,5 @@ Content-Type: application/json
 
 
 ### 删除用户
-DELETE http://{{host}}/users/1
+DELETE http://{{host}}/users/650a914d540334004243cad9
 
