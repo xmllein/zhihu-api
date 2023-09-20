@@ -10,7 +10,13 @@ class UserCtl {
 
   // 用户详情
   async findById(ctx) {
-    const user = await User.findById(ctx.params.id)
+
+    // 如果用户自定义字段
+    const {fields} = ctx.query
+    //fields=employments;educations;locations 转 employee educations locations
+    const selectFields = fields.split(';').filter(f => f).map(f => ' +' + f).join('')
+
+    const user = await User.findById(ctx.params.id).select(selectFields)
     if (!user) {
       ctx.throw(404, '用户不存在')
     }

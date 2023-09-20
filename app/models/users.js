@@ -14,9 +14,9 @@ const userSchema = new Schema({
   // 一句话介绍
   headline: {type: String},
   // 居住地
-  locations: {type: [{type: String}]},
+  locations: {type: [{type: String}], select: false},
   // 商业领域
-  business: {type: String},
+  business: {type: String, select: false},
   // 职业经历
   employments: {
     type: [{
@@ -25,6 +25,7 @@ const userSchema = new Schema({
       // 职位
       job: {type: String},
     }],
+    select: false,
   },
   // 教育经历
   educations: {
@@ -39,6 +40,7 @@ const userSchema = new Schema({
       // 毕业年份
       graduation_year: {type: Number},
     }],
+    select: false,
   },
 })
 
