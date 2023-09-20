@@ -3,7 +3,8 @@ GET http://{{host}}/users
 Accept: application/json
 
 ### 用户详情
-GET http://{{host}}/users/650a914d540334004243cad9
+GET http://{{host}}/users/650a93326d5a6b7b68a4b31b
+Authorization: {{token}}
 
 
 ### 创建用户
@@ -28,3 +29,16 @@ Content-Type: application/json
 ### 删除用户
 DELETE http://{{host}}/users/650a914d540334004243cad9
 
+
+### 用户登录
+POST http://{{host}}/users/login
+Content-Type: application/json
+
+{
+  "name": "admin",
+  "password": "123456"
+}
+
+> {%
+ client.global.set('token', response.body.token)
+ %}
