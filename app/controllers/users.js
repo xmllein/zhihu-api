@@ -19,8 +19,15 @@ class UserCtl {
   async create(ctx) {
     ctx.verifyParams({
       name: {type: 'string', required: true},
-      age: {type: 'number', required: false}
+      password: {type: 'string', required: true}
     })
+    // 获取参数
+    const {name} = ctx.request.body
+    // 判断用户是否已存在
+    const repeatedUser = await User.findOne({name})
+    if (repeatedUser) {
+        ctx.throw(409, '用户已存在')
+    }
     ctx.body = await new User(ctx.request.body).save()
   }
 
@@ -28,7 +35,7 @@ class UserCtl {
   async update(ctx) {
     ctx.verifyParams({
       name: {type: 'string', required: true},
-      age: {type: 'number', required: false}
+      password: {type: 'string', required: false}
     })
     const user = await User.findByIdAndUpdate(ctx.params.id, ctx.request.body)
     if (!user) {

@@ -12,7 +12,7 @@ router.post('/', create)
 router.get('/:id', findById)
 
 // 更新用户
-router.put('/:id', update)
+router.patch('/:id', update)
 
 // 删除用户
 router.delete('/:id', del)

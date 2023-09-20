@@ -11,12 +11,13 @@ POST http://{{host}}/users
 Content-Type: application/json
 
 {
-  "name": "许梦龙1"
+  "name": "admin",
+  "password": "123456"
 }
 
 
 ### 更新用户
-PUT http://{{host}}/users/650a914d540334004243cad9
+PATCH http://{{host}}/users/650a9136540334004243cad7
 Content-Type: application/json
 
 {
