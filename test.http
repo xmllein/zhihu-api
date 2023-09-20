@@ -3,7 +3,7 @@ GET http://{{host}}/users?per_page=10&page=1&q=许
 Accept: application/json
 
 ### 用户详情
-GET http://{{host}}/users/650a93326d5a6b7b68a4b31b?fields=employments;educations;locations;following;
+GET http://{{host}}/users/650a93326d5a6b7b68a4b31b?fields=employments;educations;locations;following;business;
 Authorization: Bearer {{token}}
 
 
@@ -25,7 +25,11 @@ Content-Type: application/json
 {
   "name": "admin",
   "avatar_url": "http://localhost:3000/uploads/upload_c45810cec65a4ee0fd8456112757baf4.png",
-  "headline": "我是一只小小小小鸟"
+  "headline": "我是一只小小小小鸟",
+  "locations": [
+    "650ab28f9bd62f4af0d51a4f"
+  ],
+  "business": "650ab3879bd62f4af0d51a58"
 }
 
 
@@ -89,8 +93,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-"name":"这个一个话题",
-"introduction":"这个一个话题的介绍"
+"name":"金融",
+"introduction":"这个一个话题的介绍，金融很好"
 }
 
 

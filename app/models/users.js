@@ -14,25 +14,25 @@ const userSchema = new Schema({
   // 一句话介绍
   headline: {type: String},
   // 居住地
-  locations: {type: [{type: String}], select: false},
+  locations: {type: [{type: Schema.Types.ObjectId, ref: 'Topic'}], select: false},
   // 商业领域
-  business: {type: String, select: false},
+  business: {type: Schema.Types.ObjectId, ref: 'Topic', select: false},
   // 职业经历
   employments: {
     type: [{
       // 公司
-      company: {type: String},
+      company: {type: Schema.Types.ObjectId, ref: 'Topic'},
       // 职位
-      job: {type: String},
+      job: {type: Schema.Types.ObjectId, ref: 'Topic'},
     }],
     select: false,
   },
   // 教育经历
   educations: {
     type: [{
-      school: {type: String},
+      school: {type: Schema.Types.ObjectId, ref: 'Topic'},
       // 专业
-      major: {type: String},
+      major: {type: Schema.Types.ObjectId, ref: 'Topic'},
       // 学历
       diploma: {type: Number, enum: [1, 2, 3, 4, 5]},
       // 入学年份
@@ -44,7 +44,7 @@ const userSchema = new Schema({
   },
   // 关注与粉丝
   following: {
-    type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    type: [{type: Schema.Types.ObjectId, ref: 'User'}],
     select: false,
   }
 })

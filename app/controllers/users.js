@@ -34,7 +34,21 @@ class UserCtl {
     //fields=employments;educations;locations 转 employee educations locations
     const selectFields = fields.split(';').filter(f => f).map(f => ' +' + f).join('')
 
-    const user = await User.findById(ctx.params.id).select(selectFields)
+
+    //相关联话题
+    const populateStr = fields.split(';').filter(f => f).map(f => {
+        // 工作相关
+        if (f === 'employments') {
+            return 'employments.company employments.job'
+        }
+        // 教育相关
+        if (f === 'educations') {
+            return 'educations.school educations.major'
+        }
+        return f
+    }).join(' ');
+
+    const user = await User.findById(ctx.params.id).select(selectFields).populate(populateStr)
     if (!user) {
       ctx.throw(404, '用户不存在')
     }
