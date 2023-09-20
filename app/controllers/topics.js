@@ -4,7 +4,13 @@ class TopicsCtl {
 
   // 获取话题列表
   async find(ctx) {
-    ctx.body = await Topic.find()
+    // 每页默认10条
+    const {per_page = 10} = ctx.query
+    // 页码默认1
+    const page = Math.max(ctx.query.page * 1, 1) - 1
+    // 每页条数
+    const perPage = Math.max(per_page * 1, 1)
+    ctx.body = await Topic.find().limit(perPage).skip(page * perPage)
   }
 
   // 获取话题详情

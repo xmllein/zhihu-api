@@ -5,7 +5,22 @@ const {secret} = require('../config')
 class UserCtl {
   // 用户列表
   async find(ctx) {
-    ctx.body = await User.find()
+    // 每页默认10条
+    const {per_page = 10} = ctx.query
+    // 页码默认1
+    const page = Math.max(ctx.query.page * 1, 1) - 1
+    // 每页条数
+    const perPage = Math.max(per_page * 1, 1)
+
+    // 总数
+    const total = await User.countDocuments()
+    const list = await User.find().limit(perPage).skip(page * perPage)
+    ctx.body = {
+      total,
+      page: page + 1,
+      per_page: perPage,
+      list
+    }
   }
 
   // 用户详情

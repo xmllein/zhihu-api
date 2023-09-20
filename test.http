@@ -1,5 +1,5 @@
 ### 用户列表
-GET http://{{host}}/users
+GET http://{{host}}/users?per_page=10&page=2
 Accept: application/json
 
 ### 用户详情
@@ -12,7 +12,7 @@ POST http://{{host}}/users
 Content-Type: application/json
 
 {
-  "name": "admin",
+  "name": "admin10",
   "password": "123456"
 }
 
