@@ -59,3 +59,19 @@ Content-Disposition: form-data; name="file"; filename="upload.txt"
 < ./upload.txt
 
 --boundary--
+
+
+### 用户粉丝列表
+GET http://{{host}}/users/650a9136540334004243cad7/followers
+
+### 关注用户列表
+GET http://{{host}}/users/650a93326d5a6b7b68a4b31b/following
+
+
+### 关注用户
+PUT http://{{host}}/users/following/650a93326d5a6b7b68a4b31b
+Authorization: Bearer {{token}}
+
+### 取消关注用户
+DELETE http://{{host}}/users/following/650a9136540334004243cad7
+Authorization: Bearer {{token}}

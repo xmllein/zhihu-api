@@ -86,6 +86,50 @@ class UserCtl {
     ctx.body = {token}
   }
 
+  // 某个用户粉丝列表
+  async listFollowing(ctx) {
+    // populate('following') 表示将 following 字段从 id 转为用户信息
+    const user = await User.findById(ctx.params.id).select('+following').populate('following')
+    if (!user) {
+      ctx.throw(404, '用户不存在')
+    }
+    ctx.body = user.following
+  }
+
+  // 某个用户关注列表
+  async listFollowers(ctx) {
+    // populate('followers') 表示将 followers 字段从 id 转为用户信息
+    const users = await User.find({following: ctx.params.id})
+    ctx.body = users
+  }
+
+  // 关注用户
+  async follow(ctx) {
+    // 当前用户
+    const me = await User.findById(ctx.state.user._id).select('+following')
+    // 判断当前用户是否已关注该用户
+    if (!me.following.map(id => id.toString()).includes(ctx.params.id)) {
+      me.following.push(ctx.params.id)
+      me.save()
+    }
+    ctx.status = 204
+  }
+
+  // 取消关注用户
+  async unfollow(ctx) {
+    // 当前用户
+    const me = await User.findById(ctx.state.user._id).select('+following')
+    // 当前用户关注列表中的索引
+    const index = me.following.map(id => id.toString()).indexOf(ctx.params.id)
+    // 已经关注
+    if (index > -1) {
+      // 取消关注
+      me.following.splice(index, 1)
+      me.save()
+    }
+    ctx.status = 204
+  }
+
   // 删除用户
   async delete(ctx) {
     const user = await User.findByIdAndRemove(ctx.params.id)
