@@ -75,3 +75,30 @@ Authorization: Bearer {{token}}
 ### 取消关注用户
 DELETE http://{{host}}/users/following/650a9136540334004243cad7
 Authorization: Bearer {{token}}
+
+
+### 话题列表
+GET http://{{host}}/topics
+
+### 话题详情
+GET http://{{host}}/topics/650aaa21085a038417e7055e?fields=introduction;
+
+### 创建话题
+POST http://{{host}}/topics
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+"name":"这个一个话题",
+"introduction":"这个一个话题的介绍"
+}
+
+
+### 更新话题
+PATCH http://{{host}}/topics/650aaa21085a038417e7055e
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "这个一个话题1"
+}
