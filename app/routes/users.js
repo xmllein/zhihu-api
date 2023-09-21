@@ -17,10 +17,11 @@ const {
   listFollowingTopics,
   followTopic,
   unfollowTopic,
+  listQuestions,
 } = require('../controllers/users')
 
 // 话题
-const { checkTopicExist } = require('../controllers/topics')
+const {checkTopicExist} = require('../controllers/topics')
 const {secret} = require('../config')
 
 // 用户认证中间件
@@ -64,6 +65,9 @@ router.put('/followingTopics/:id', auth, checkTopicExist, followTopic)
 
 // 取消关注某个话题
 router.delete('/followingTopics/:id', auth, checkTopicExist, unfollowTopic)
+
+// 获取某个用户的问题列表
+router.get('/:id/questions', listQuestions)
 
 
 module.exports = router

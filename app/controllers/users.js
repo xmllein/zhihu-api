@@ -1,5 +1,6 @@
 const jsonwebtoken = require('jsonwebtoken')
 const User = require('../models/users')
+const Question = require('../models/questions')
 const {secret} = require('../config')
 
 class UserCtl {
@@ -148,6 +149,12 @@ class UserCtl {
       me.save()
     }
     ctx.status = 204
+  }
+
+  // 用户发出的问题
+  async listQuestions(ctx) {
+    const questions = await Question.find({questioner: ctx.params.id})
+    ctx.body = questions
   }
 
   // 用户取消关注话题
