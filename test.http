@@ -12,7 +12,7 @@ POST http://{{host}}/users
 Content-Type: application/json
 
 {
-  "name": "admin10",
+  "name": "admin11",
   "password": "123456"
 }
 
@@ -93,8 +93,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "name": "金融",
-  "introduction": "这个一个话题的介绍，金融很好"
+  "name": "金融1",
+  "introduction": "这个一个话题的介绍，金融很好1"
 }
 
 
@@ -137,8 +137,8 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "title": "这是一个问题100",
-  "description": "这是问题的描述100"
+  "title": "这是一个问题101",
+  "description": "这是问题的描述101"
 }
 
 ### 更新问题
@@ -178,7 +178,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "content": "这是一个答案100"
+  "content": "这是一个答案101"
 }
 
 ### 更新问题答案
@@ -234,7 +234,7 @@ Authorization: Bearer {{token}}
 
 
 ### 评论列表
-GET http://{{host}}/questions/650b9da6c28a8f1985a92d91/answers/650bad08e4a4128115c79330/comments?rootCommentId=650bb0aed2f41c5e88a96a82
+GET http://{{host}}/questions/650b9da6c28a8f1985a92d91/answers/650bad08e4a4128115c79330/comments?rootCommentId=650bb0b6d2f41c5e88a96a86
 
 
 ### 创建评论

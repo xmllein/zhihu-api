@@ -12,6 +12,6 @@ const commentSchema = new Schema({
   rootCommentId: {type: String},
   // 二级评论
   replyTo: {type: Schema.Types.ObjectId, ref: 'User'},
-})
+},{timestamps: true})
 
 module.exports = model('Comment', commentSchema)

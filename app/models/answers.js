@@ -10,6 +10,6 @@ const answerSchema = new Schema({
   questionId: {type: String, required: true},
   // 赞同数
   voteCount: {type: Number, required: true, default: 0},
-})
+},{timestamps: true})
 
 module.exports = model('Answer', answerSchema)
