@@ -234,7 +234,7 @@ Authorization: Bearer {{token}}
 
 
 ### 评论列表
-GET http://{{host}}/questions/650b9da6c28a8f1985a92d91/answers/650bad08e4a4128115c79330/comments
+GET http://{{host}}/questions/650b9da6c28a8f1985a92d91/answers/650bad08e4a4128115c79330/comments?rootCommentId=650bb0aed2f41c5e88a96a82
 
 
 ### 创建评论
@@ -243,7 +243,9 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "content": "这是一个评论3"
+  "content": "这是一个二级评论",
+  "rootCommentId": "650bb0b6d2f41c5e88a96a86",
+  "replyTo": "650a93326d5a6b7b68a4b31b"
 }
 
 
@@ -262,5 +264,5 @@ Content-Type: application/json
 
 
 ### 删除评论
-DELETE http://{{host}}/questions/650b9da6c28a8f1985a92d91/answers/650bad08e4a4128115c79330/comments/650bb0aed2f41c5e88a96a82
+DELETE http://{{host}}/questions/650b9da6c28a8f1985a92d91/answers/650bad08e4a4128115c79330/comments/650bbaf193ea3ed7871c5d47
 Authorization: Bearer {{token}}
