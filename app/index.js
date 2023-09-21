@@ -2,6 +2,7 @@ const Koa = require('koa')
 const koaBody = require('koa-body')
 const koaStatic = require('koa-static')
 const error = require('koa-json-error')
+const cors = require('koa2-cors')
 const parameter = require('koa-parameter')
 const mongoose = require('mongoose')
 const path = require('path')
@@ -19,6 +20,9 @@ db.once('open', () => {
 })
 
 db.on('error', console.error.bind(console, '连接数据库失败'))
+
+// 跨域
+app.use(cors())
 
 // 静态文件
 app.use(koaStatic(path.join(__dirname, 'public')))
@@ -44,6 +48,9 @@ app.use(koaBody({
 app.use(parameter(app))
 // 路由
 routing(app)
-app.listen(3000, () => {
-  console.log('server is running at http://localhost:3000')
-})
+
+// app.listen(3000, () => {
+//   console.log('server is running at http://localhost:3000')
+// })
+
+module.exports = app

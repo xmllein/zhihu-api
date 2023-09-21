@@ -10,7 +10,7 @@ class UserCtl {
     // 每页默认10条
     const {per_page = 10} = ctx.query
     // 页码默认1
-    const page = Math.max(ctx.query.page * 1, 1) - 1
+    const page = ctx.query.page? (Math.max(ctx.query.page * 1, 1) - 1) : 0
     // 每页条数
     const perPage = Math.max(per_page * 1, 1)
 
