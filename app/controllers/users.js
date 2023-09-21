@@ -222,6 +222,37 @@ class UserCtl {
     ctx.status = 204
   }
 
+  // 用户收藏答案列表
+  async listCollectingAnswers(ctx) {
+    const user = await User.findById(ctx.params.id).select('+collectingAnswers').populate('collectingAnswers')
+    if (!user) {
+      ctx.throw(404, '用户不存在')
+    }
+    ctx.body = user.collectingAnswers
+  }
+
+  // 用户收藏答案
+  async collectAnswer(ctx, next) {
+    const me = await User.findById(ctx.state.user._id).select('+collectingAnswers')
+    if (!me.collectingAnswers.map(id => id.toString()).includes(ctx.params.id)) {
+      me.collectingAnswers.push(ctx.params.id)
+      me.save()
+    }
+    ctx.status = 204
+    await next()
+  }
+
+  // 用户取消收藏答案
+  async uncollectAnswer(ctx) {
+    const me = await User.findById(ctx.state.user._id).select('+collectingAnswers')
+    const index = me.collectingAnswers.map(id => id.toString()).indexOf(ctx.params.id)
+    if (index > -1) {
+      me.collectingAnswers.splice(index, 1)
+      me.save()
+    }
+    ctx.status = 204
+  }
+
 
   // 用户取消关注话题
   async unfollowTopic(ctx) {

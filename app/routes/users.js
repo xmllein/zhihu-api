@@ -24,6 +24,9 @@ const {
   listDislikingAnswers,
   dislikeAnswer,
   undislikeAnswer,
+  listCollectingAnswers,
+  collectAnswer,
+  uncollectAnswer
 } = require('../controllers/users')
 
 // 话题
@@ -94,6 +97,15 @@ router.put('/dislikingAnswers/:id', auth, checkAnswerExist, dislikeAnswer, unlik
 
 // 取消踩答案
 router.delete('/dislikingAnswers/:id', auth, checkAnswerExist, undislikeAnswer)
+
+// 获取某个用户收藏的答案列表
+router.get('/:id/collectingAnswers', listCollectingAnswers)
+
+// 收藏答案
+router.put('/collectingAnswers/:id', auth, checkAnswerExist, collectAnswer)
+
+// 取消收藏答案
+router.delete('/collectingAnswers/:id', auth, checkAnswerExist, uncollectAnswer)
 
 
 module.exports = router

@@ -54,12 +54,17 @@ const userSchema = new Schema({
   },
   // 赞过的答案
   likingAnswers: {
-    type: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
+    type: [{type: Schema.Types.ObjectId, ref: 'Answer'}],
     select: false,
   },
   // 踩过的答案
   dislikingAnswers: {
-    type: [{ type: Schema.Types.ObjectId, ref: 'Answer' }],
+    type: [{type: Schema.Types.ObjectId, ref: 'Answer'}],
+    select: false,
+  },
+  // 收藏的答案
+  collectingAnswers: {
+    type: [{type: Schema.Types.ObjectId, ref: 'Answer'}],
     select: false,
   },
 })

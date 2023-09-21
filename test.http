@@ -219,3 +219,15 @@ Authorization: Bearer {{token}}
 DELETE http://{{host}}/users/dislikingAnswers/650ba3dd51edf5d34ec50f33
 Authorization: Bearer {{token}}
 
+
+### 用户收藏的答案列表
+GET http://{{host}}/users/650a93326d5a6b7b68a4b31b/collectingAnswers
+
+
+### 收藏答案
+PUT http://{{host}}/users/collectingAnswers/650bad08e4a4128115c79330
+Authorization: Bearer {{token}}
+
+### 取消收藏答案
+DELETE http://{{host}}/users/collectingAnswers/650bad08e4a4128115c79330
+Authorization: Bearer {{token}}
