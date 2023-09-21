@@ -148,7 +148,11 @@ Content-Type: application/json
 
 {
   "title": "这是一个问题1",
-  "description": "这是问题的描述1"
+  "description": "这是问题的描述1",
+  "topics": [
+    "650ab3879bd62f4af0d51a58",
+    "650ab28f9bd62f4af0d51a4f"
+  ]
 }
 
 
