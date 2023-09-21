@@ -19,8 +19,9 @@ class AnswersCtl {
     if (!answer) {
       ctx.throw(404, '答案不存在')
     }
-    if (ctx.params.questionId !== answer.questionId) {
-      ctx.throw(404, '该问题下没有此答案')
+    // 只有删改查答案时候检查此逻辑，赞、踩答案时候不检查
+    if (ctx.params.questionId && ctx.params.questionId !== answer.questionId) {
+      ctx.throw(404, '该问题下没有此答案');
     }
     ctx.state.answer = answer
     await next()

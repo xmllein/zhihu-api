@@ -18,10 +18,18 @@ const {
   followTopic,
   unfollowTopic,
   listQuestions,
+  listLikingAnswers,
+  likeAnswer,
+  unlikeAnswer,
+  listDislikingAnswers,
+  dislikeAnswer,
+  undislikeAnswer,
 } = require('../controllers/users')
 
 // 话题
 const {checkTopicExist} = require('../controllers/topics')
+// 答案
+const {checkAnswerExist} = require('../controllers/answers')
 const {secret} = require('../config')
 
 // 用户认证中间件
@@ -68,6 +76,24 @@ router.delete('/followingTopics/:id', auth, checkTopicExist, unfollowTopic)
 
 // 获取某个用户的问题列表
 router.get('/:id/questions', listQuestions)
+
+// 获取某个用户赞过的答案列表
+router.get('/:id/likingAnswers', listLikingAnswers)
+
+// 赞答案
+router.put('/likingAnswers/:id', auth, checkAnswerExist, likeAnswer, undislikeAnswer)
+
+// 取消赞答案
+router.delete('/likingAnswers/:id', auth, checkAnswerExist, unlikeAnswer)
+
+// 获取某个用户踩过的答案列表
+router.get('/:id/dislikingAnswers', listDislikingAnswers)
+
+// 踩答案
+router.put('/dislikingAnswers/:id', auth, checkAnswerExist, dislikeAnswer, unlikeAnswer)
+
+// 取消踩答案
+router.delete('/dislikingAnswers/:id', auth, checkAnswerExist, undislikeAnswer)
 
 
 module.exports = router

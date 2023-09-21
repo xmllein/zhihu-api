@@ -1,13 +1,15 @@
-const mongoose = require('mongoose');
-const { Schema, model } = mongoose;
+const mongoose = require('mongoose')
+const {Schema, model} = mongoose
 
 // 答案模型
 const answerSchema = new Schema({
-  __v: { type: Number, select: false },
-  content: { type: String, required: true },
+  __v: {type: Number, select: false},
+  content: {type: String, required: true},
   // 回答者(用户)
-  answerer: { type: Schema.Types.ObjectId, ref: 'User', required: true, select: false },
-  questionId: { type: String, required: true },
-});
+  answerer: {type: Schema.Types.ObjectId, ref: 'User', required: true, select: false},
+  questionId: {type: String, required: true},
+  // 赞同数
+  voteCount: {type: Number, required: true, default: 0},
+})
 
-module.exports = model('Answer', answerSchema);
+module.exports = model('Answer', answerSchema)

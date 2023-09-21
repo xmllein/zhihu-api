@@ -178,7 +178,7 @@ Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-  "content": "这是一个答案2"
+  "content": "这是一个答案100"
 }
 
 ### 更新答案
@@ -193,5 +193,29 @@ Content-Type: application/json
 
 ### 删除答案
 DELETE http://{{host}}/questions/650b9da6c28a8f1985a92d91/answers/650ba3e551edf5d34ec50f37
+Authorization: Bearer {{token}}
 
+### 用户赞过的答案列表
+GET http://{{host}}/users/650a93326d5a6b7b68a4b31b/likingAnswers
+
+
+### 赞答案
+PUT http://{{host}}/users/likingAnswers/650bad08e4a4128115c79330
+Authorization: Bearer {{token}}
+
+### 取消赞答案
+DELETE http://{{host}}/users/likingAnswers/650bad08e4a4128115c79330
+Authorization: Bearer {{token}}
+
+### 用户踩过的答案列表
+GET http://{{host}}/users/650a93326d5a6b7b68a4b31b/dislikingAnswers
+
+
+### 踩答案
+PUT http://{{host}}/users/dislikingAnswers/650ba3dd51edf5d34ec50f33
+Authorization: Bearer {{token}}
+
+### 取消踩答案
+DELETE http://{{host}}/users/dislikingAnswers/650ba3dd51edf5d34ec50f33
+Authorization: Bearer {{token}}
 
