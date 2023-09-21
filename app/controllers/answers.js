@@ -60,8 +60,8 @@ class AnswersCtl {
     ctx.verifyParams({
       content: {type: 'string', required: false},
     })
-    const answer = await Answer.findByIdAndUpdate(ctx.params.id, ctx.request.body)
-    ctx.body = answer
+   await ctx.state.answer.updateOne(ctx.request.body)
+    ctx.body = ctx.state.answer
   }
 
   // 删除答案

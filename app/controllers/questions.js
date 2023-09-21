@@ -55,8 +55,8 @@ class QuestionsCtl {
       title: {type: 'string', required: false},
       description: {type: 'string', required: false},
     })
-    const question = await Question.findByIdAndUpdate(ctx.params.id, ctx.request.body)
-    ctx.body = question
+    await ctx.state.question.updateOne(ctx.request.body)
+    ctx.body = ctx.state.question
   }
 
   // 删除问题
